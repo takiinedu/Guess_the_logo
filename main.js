@@ -33,48 +33,54 @@ let name = "";
 let url = "";
 let check = 1;
 let index = 0;
-
+let CanClick = true;
 logo.addEventListener("click", () => {
     console.log("check =", check);
-    if (check === 1) {
-        listAll(imagesRef)
-            .then((res) => {
-                const promises = res.items.map((itemRef) => {
-                    return getDownloadURL(itemRef).then((url) => {
-                        const name_img = itemRef.name;
-                        const nameWithoutExtension = name_img.replace(/\.[^/.]+$/, "");
-                        return { name: nameWithoutExtension, url: url };
+    if(CanClick){
+        CanClick = false;
+        if (check === 1) {
+            listAll(imagesRef)
+                .then((res) => {
+                    const promises = res.items.map((itemRef) => {
+                        return getDownloadURL(itemRef).then((url) => {
+                            const name_img = itemRef.name;
+                            const nameWithoutExtension = name_img.replace(/\.[^/.]+$/, "");
+                            return { name: nameWithoutExtension, url: url };
+                        });
                     });
+    
+                    return Promise.all(promises);
+                })
+                .then((items) => {
+                    // Sắp xếp các mục theo tên
+                    items.sort((a, b) => a.name.localeCompare(b.name));
+    
+                    // Lấy một chỉ số ngẫu nhiên khác với chỉ số trước đó
+                    let random;
+                    do {
+                        random = Math.floor(Math.random() * 4) + 1;
+                    } while (random === index);
+                    index = random;
+    
+                    console.log("index =", index);
+                    if (index < items.length) {
+                        const item = items[index];
+                        name = item.name;
+                        url = item.url;
+                        logo__img.src = url;
+                        logo__name.innerHTML = "________";
+                        check = 2;
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error listing images:", error);
                 });
-
-                return Promise.all(promises);
-            })
-            .then((items) => {
-                // Sắp xếp các mục theo tên
-                items.sort((a, b) => a.name.localeCompare(b.name));
-
-                // Lấy một chỉ số ngẫu nhiên khác với chỉ số trước đó
-                let random;
-                do {
-                    random = Math.floor(Math.random() * 4) + 1;
-                } while (random === index);
-                index = random;
-
-                console.log("index =", index);
-                if (index < items.length) {
-                    const item = items[index];
-                    name = item.name;
-                    url = item.url;
-                    logo__img.src = url;
-                    logo__name.innerHTML = "________";
-                    check = 2;
-                }
-            })
-            .catch((error) => {
-                console.error("Error listing images:", error);
-            });
-    } else if (check === 2) {
-        logo__name.innerHTML = name;
-        check = 1;
+        } else if (check === 2) {
+            logo__name.innerHTML = name;
+            check = 1;
+        }
+        setTimeout(function() {
+            CanClick = true; // Sau 2 giây cho phép click lại
+        }, 2000);
     }
 });
