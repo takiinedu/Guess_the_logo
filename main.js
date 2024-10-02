@@ -36,7 +36,7 @@ let index = 0;
 let CanClick = true;
 logo.addEventListener("click", () => {
     console.log("check =", check);
-    if(CanClick){
+    if (CanClick) {
         CanClick = false;
         if (check === 1) {
             listAll(imagesRef)
@@ -48,20 +48,20 @@ logo.addEventListener("click", () => {
                             return { name: nameWithoutExtension, url: url };
                         });
                     });
-    
+
                     return Promise.all(promises);
                 })
                 .then((items) => {
                     // Sắp xếp các mục theo tên
                     items.sort((a, b) => a.name.localeCompare(b.name));
-    
+
                     // Lấy một chỉ số ngẫu nhiên khác với chỉ số trước đó
                     let random;
                     do {
                         random = Math.floor(Math.random() * 4) + 1;
                     } while (random === index);
                     index = random;
-    
+
                     console.log("index =", index);
                     if (index < items.length) {
                         const item = items[index];
@@ -75,12 +75,13 @@ logo.addEventListener("click", () => {
                 .catch((error) => {
                     console.error("Error listing images:", error);
                 });
+            setTimeout(function () {
+                CanClick = true; // Sau 2 giây cho phép click lại
+            }, 4000);
         } else if (check === 2) {
             logo__name.innerHTML = name;
             check = 1;
+            canClick = true
         }
-        setTimeout(function() {
-            CanClick = true; // Sau 2 giây cho phép click lại
-        }, 4000);
     }
 });
