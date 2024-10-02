@@ -81,7 +81,7 @@ logo.addEventListener("click", () => {
         } else if (check === 2) {
             logo__name.innerHTML = name;
             check = 1;
-            canClick = true
+            CanClick = true;
         }
     }
 });
