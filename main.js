@@ -81,6 +81,6 @@ logo.addEventListener("click", () => {
         }
         setTimeout(function() {
             CanClick = true; // Sau 2 giây cho phép click lại
-        }, 2000);
+        }, 4000);
     }
 });
