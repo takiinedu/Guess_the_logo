@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300:400&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(to right, #d4d3dd, #efefbb);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0;
+    height: 100vh;
+}
+h1{
+    letter-spacing: 3px;
+    transform: translateY(calc(-100vh / 3));
+    position: fixed;
+    text-align: center;
+    min-width: 300px;
+}
+.logo-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.logo {
+    width: 90vw;
+    max-width: 300px;
+    min-width: 250px;
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    margin: 10px;
+    padding: 48px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.20s;
+}
+.logo img{
+    max-width: 90%;
+    margin-top: 20px;
+}
+.logo .info{
+    margin-top: 20px;
+}
+.logo .info .number{
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
+}
+.logo .info .name{
+    margin: 15px 0 7px;
+    letter-spacing: 1px;
+}
