@@ -29,6 +29,12 @@ if (!logo__name || !logo__img || !logo) {
     throw new Error("One or more elements with the specified IDs were not found.");
 }
 
+let number_of_logos = 60;
+let index_array = [0];
+for (let i = 0; i < number_of_logos; i++) {
+    index_array[i] = i;
+}
+
 let name = "";
 let url = "";
 let check = 1;
@@ -56,11 +62,11 @@ logo.addEventListener("click", () => {
                     items.sort((a, b) => a.name.localeCompare(b.name));
 
                     // Lấy một chỉ số ngẫu nhiên khác với chỉ số trước đó
-                    let random;
-                    do {
-                        random = Math.floor(Math.random() * 4) + 1;
-                    } while (random === index);
-                    index = random;
+                    let random = Math.floor(Math.random() * index_array.length) - 1;
+                    let index = index_array[random];
+                    index_array.splice(random, 1);
+                    console.log(index);
+                    console.log(index_array);
 
                     console.log("index =", index);
                     if (index < items.length) {
