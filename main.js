@@ -41,7 +41,6 @@ let check = 1;
 let index = 0;
 let CanClick = true;
 logo.addEventListener("click", () => {
-    console.log("check =", check);
     if (CanClick) {
         CanClick = false;
         if (check === 1) {
@@ -67,7 +66,6 @@ logo.addEventListener("click", () => {
                     index_array.splice(random, 1);
                     console.log(index);
                     console.log(index_array);
-
                     console.log("index =", index);
                     if (index < items.length) {
                         const item = items[index];
