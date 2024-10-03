@@ -64,9 +64,8 @@ logo.addEventListener("click", () => {
                     let random = Math.floor(Math.random() * index_array.length) - 1;
                     let index = index_array[random];
                     index_array.splice(random, 1);
-                    console.log(index);
-                    console.log(index_array);
                     console.log("index =", index);
+                    console.log(index_array);
                     if (index < items.length) {
                         const item = items[index];
                         name = item.name;
