@@ -122,7 +122,7 @@ logo.addEventListener("click", () => {
                 count = 10;
                 timebox.innerHTML = count;
                 runn();
-            }, 2500);
+            }, 2000);
             setTimeout(function () {
                 CanClick = true; // Sau 2 giây cho phép click lại
             }, 4000);
