@@ -40,6 +40,44 @@ let url = "";
 let check = 1;
 let index = 0;
 let CanClick = true;
+const timebox = document.querySelector("#countdow-box");
+let count = 10;
+function runn() {
+    setTimeout(function () {
+        if (count == 0 || count < 0) {
+            return;
+        }
+        count--;
+        timebox.innerHTML = count;
+        console.log(count);
+        if (count == 0) {
+            logo__name.innerHTML = name;
+            check = 1;
+            CanClick = false;
+            loss();
+            return;
+        }
+        runn();
+    }, 1000);
+}
+let time = 500;
+let red = 0;
+function loss(){
+    setTimeout(function () {
+        if (red == 0) {
+            console.log("red");
+            document.getElementById("logo").style.backgroundColor = "red";
+            time = 1000;
+            red = 1;
+        }else{
+            console.log("white");
+            document.getElementById("logo").style.backgroundColor = "white";
+            time = 500;
+            red = 0;
+        }
+        loss();
+    }, time);
+}
 logo.addEventListener("click", () => {
     if (CanClick) {
         CanClick = false;
@@ -78,10 +116,18 @@ logo.addEventListener("click", () => {
                 .catch((error) => {
                     console.error("Error listing images:", error);
                 });
+            count = -1;
+            timebox.innerHTML = 'Loading...';
+            setTimeout(function () {
+                count = 10;
+                timebox.innerHTML = count;
+                runn();
+            }, 2500);
             setTimeout(function () {
                 CanClick = true; // Sau 2 giây cho phép click lại
             }, 4000);
         } else if (check === 2) {
+            count = -1;
             logo__name.innerHTML = name;
             check = 1;
             CanClick = true;
