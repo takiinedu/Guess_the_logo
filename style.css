@@ -62,6 +62,7 @@ h1{
     letter-spacing: 1px;
 }
 .countdow-box{
+    position: fixed;
     top: 50px;
     bottom: 50px;
     position: fixed;
