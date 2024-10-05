@@ -47,6 +47,7 @@ h1{
 .logo img{
     max-width: 90%;
     margin-top: 20px;
+    border-radius: 10px;
 }
 .logo .info{
     margin-top: 20px;
