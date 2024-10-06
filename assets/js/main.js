@@ -40,7 +40,6 @@ let url = "";
 let check = 1;
 let index = 0;
 let CanClick = true;
-const timebox = document.querySelector("#countdow-box");
 let count = 10;
 function runn() {
     setTimeout(function () {
@@ -48,7 +47,8 @@ function runn() {
             return;
         }
         count--;
-        timebox.innerHTML = count;
+        let width = (count - 1)/10*100;
+        document.getElementById("countdow").style.width = `${width}%`;
         console.log(count);
         if (count == 0) {
             logo__name.innerHTML = name;
@@ -117,10 +117,10 @@ logo.addEventListener("click", () => {
                     console.error("Error listing images:", error);
                 });
             count = -1;
-            timebox.innerHTML = 'Loading...';
             setTimeout(function () {
                 count = 10;
-                timebox.innerHTML = count;
+                let width = (count - 1)/10*100;
+                document.getElementById("countdow").style.width = `${width}%`;
                 runn();
             }, 1300);
             setTimeout(function () {

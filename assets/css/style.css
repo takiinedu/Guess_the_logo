@@ -7,7 +7,8 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    background: linear-gradient(to right, #d4d3dd, #efefbb);
+    background-image: url(../img/bg-body.jpg);
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,13 +17,15 @@ body {
     margin: 0;
     height: 100vh;
 }
-h1{
+
+h1 {
     letter-spacing: 3px;
     transform: translateY(calc(-100vh / 3));
     position: fixed;
     text-align: center;
     min-width: 300px;
 }
+
 .logo-container {
     display: flex;
     flex-wrap: wrap;
@@ -31,6 +34,7 @@ h1{
     max-width: 1200px;
     margin: 0 auto;
 }
+
 .logo {
     width: 90vw;
     max-width: 300px;
@@ -42,39 +46,61 @@ h1{
     padding: 48px;
     text-align: center;
     cursor: pointer;
-    transition: 0.20s;
+    transition: 1s;
 }
-.logo img{
+
+.logo img {
     max-width: 90%;
     margin-top: 20px;
 }
-.logo .info{
+
+.logo .info {
     margin-top: 20px;
 }
-.logo .info .number{
+
+.logo .info .number {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 0.8em;
 }
-.logo .info .name{
+
+.logo .info .name {
     margin: 15px 0 7px;
     letter-spacing: 1px;
 }
-.countdow-box{
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    position: fixed;
-    min-width: 150px;
-    padding: 20px;
-    height: 100px;
-    background-color: #ffac8e;
-    border-radius: 10px;
-    display: flex;
+
+.countdow-bar{
+    width: 25%;
+    height: 15px;
+    max-width: 300px;
+    min-width: 250px;
+    position: relative;
+    margin: 0 auto 0 auto;
+    background-color: rosybrown;
+    background: linear-gradient(#e4e3b4 0 0) padding-box, url(../img/dark-gradient-background-with-copy-space_53876-99548.avif) border-box;
     align-items: center;
-    justify-content: center;
-    font-size: 50px;
-    color: white;
-    font-weight: 700;
+    display: inline-flex;
+    border: 2px solid transparent;
+    border-radius: 50px;
+}
+.countdow{
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: rgb(0, 229, 255);
+    transition: 0.5s;
+}
+.lines{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+}
+.line{
+    width: 4px;
+    border: 0.4px solid #000;
+    rotate: 90deg;;
 }
