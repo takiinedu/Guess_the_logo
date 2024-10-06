@@ -18,11 +18,16 @@ body {
     height: 100vh;
     min-height: 750px;
 }
-
+@media screen and (max-width: 750px) {
+    h1{
+        position: absolute;
+        top: 30px;
+    }
+}
 h1 {
     letter-spacing: 3px;
     transform: translateY(calc(-100vh / 3));
-    position: absolute;
+    position: fixed;
     text-align: center;
     min-width: 300px;
     color: white;
