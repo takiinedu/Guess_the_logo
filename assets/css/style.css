@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300:400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
 
 * {
@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    background-image: url(../img/bg-body.jpg);
+    background: linear-gradient(to left, #153A8B, #241C57);
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -24,6 +24,8 @@ h1 {
     position: fixed;
     text-align: center;
     min-width: 300px;
+    color: white;
+    filter: drop-shadow(0.6rem 0.6rem 1rem rgba(20, 20, 180, 0.8));
 }
 
 .logo-container {
@@ -39,7 +41,7 @@ h1 {
     width: 90vw;
     max-width: 300px;
     min-width: 250px;
-    background-color: #eee;
+    background-color: rgba(0, 255, 208, 0.533);
     border-radius: 10px;
     box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
     margin: 10px;
@@ -47,6 +49,7 @@ h1 {
     text-align: center;
     cursor: pointer;
     transition: 1s;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .logo img {

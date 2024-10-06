@@ -110,7 +110,7 @@ logo.addEventListener("click", () => {
             }, 1300);
             setTimeout(function () {
                 CanClick = true; // Sau 2 giây cho phép click lại
-            }, 4000);
+            }, 3000);
         } else if (check === 2) {
             count = -1;
             document.getElementById("countdow").style.transition = "1s";
