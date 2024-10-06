@@ -4,7 +4,6 @@
 * {
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Lato', sans-serif;
     background: linear-gradient(to left, #153A8B, #241C57);
@@ -16,18 +15,12 @@ body {
     flex-wrap: wrap;
     margin: 0;
     height: 100vh;
-    min-height: 750px;
-}
-@media screen and (max-width: 750px) {
-    h1{
-        position: absolute;
-        top: 30px;
-    }
+    min-height: 600px;
 }
 h1 {
     letter-spacing: 3px;
     transform: translateY(calc(-100vh / 3));
-    position: fixed;
+    position: absolute;
     text-align: center;
     min-width: 300px;
     color: white;
