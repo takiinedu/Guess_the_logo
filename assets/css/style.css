@@ -21,7 +21,7 @@ body {
 h1 {
     letter-spacing: 3px;
     transform: translateY(calc(-100vh / 3));
-    position: fixed;
+    position: absolute;
     text-align: center;
     min-width: 300px;
     color: white;
