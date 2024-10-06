@@ -52,6 +52,7 @@ h1 {
 .logo img {
     max-width: 90%;
     margin-top: 20px;
+    pointer-events: none;
 }
 
 .logo .info {
@@ -66,6 +67,7 @@ h1 {
 }
 
 .logo .info .name {
+    user-select: none;
     margin: 15px 0 7px;
     letter-spacing: 1px;
 }

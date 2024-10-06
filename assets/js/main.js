@@ -42,23 +42,8 @@ let index = 0;
 let CanClick = true;
 let count = 10;
 function runn() {
-    setTimeout(function () {
-        if (count == 0 || count < 0) {
-            return;
-        }
-        count--;
-        let width = (count - 1)/10*100;
-        document.getElementById("countdow").style.width = `${width}%`;
-        console.log(count);
-        if (count == 0) {
-            logo__name.innerHTML = name;
-            check = 1;
-            CanClick = false;
-            loss();
-            return;
-        }
-        runn();
-    }, 1000);
+    document.getElementById("countdow").style.transition = "width 10s linear";
+    document.getElementById("countdow").style.width = "0%";
 }
 let time = 500;
 let red = 0;
@@ -128,6 +113,8 @@ logo.addEventListener("click", () => {
             }, 4000);
         } else if (check === 2) {
             count = -1;
+            document.getElementById("countdow").style.transition = "1s";
+            document.getElementById("countdow").style.width = `100%`;
             logo__name.innerHTML = name;
             check = 1;
             CanClick = true;
