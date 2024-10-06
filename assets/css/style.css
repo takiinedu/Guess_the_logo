@@ -1,103 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
-
-
+/* html */
 * {
-    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 body {
-    font-family: 'Lato', sans-serif;
     background: linear-gradient(to left, #153A8B, #241C57);
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 0;
+    width: 100vw;
     height: 100vh;
+    min-width: 400px;
+    transform-style: preserve-3d;
 }
-.title{
-    letter-spacing: 3px;
-    transform: translateY(calc(-100vh / 3));
-    position: relative;
-    text-align: center;
-    min-width: 300px;
-    color: white;
-    filter: drop-shadow(0.6rem 0.6rem 1rem rgba(20, 20, 180, 0.8));
-    position: relative;
-    transform: translateY(-20px);
-    font-size: 40px;
-}
-
-.logo-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo {
-    width: 90vw;
-    max-width: 300px;
-    min-width: 250px;
-    background-color: rgba(0, 255, 208, 0.533);
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
-    margin: 10px;
-    padding: 48px;
-    text-align: center;
-    cursor: pointer;
+/* contianer */
+.container{
     transition: 1s;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    width: 400px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    top: -800px;
+    transform: translate(-50%, -50%);
 }
-
-.logo img {
-    max-width: 90%;
-    margin-top: 20px;
-    pointer-events: none;
+/* title */
+.title{
+    color: white;
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 10px;
+    font-size: 50px;
 }
-
-.logo .info {
-    margin-top: 20px;
+/* card */
+.card{
+    width: 100%;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    height: 450px;
 }
-
-.logo .info .number {
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 5px 10px;
+.frames{
+    margin: auto;
+    position: relative;
+    width: 300px;
+    height: 352.5px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: 1s;
+}
+.frame-font{
+    background: linear-gradient(#dbbfa9 0 0) padding-box, linear-gradient(45deg, #002aff, #ff0008) border-box;
+    border: 3px solid transparent;
     border-radius: 10px;
-    font-size: 0.8em;
+    width: 100%;
+    height: 100%;
 }
-
-.logo .info .name {
-    user-select: none;
-    margin: 15px 0 7px;
-    letter-spacing: 1px;
+.frame-back{
+    position: absolute;
+    transform: translateZ(-0.1px);
+    top: 0;
+    background: linear-gradient(#f1b074 0 0) padding-box, linear-gradient(45deg, #002aff, #ff0008) border-box;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
 }
-
-.countdow-bar{
-    width: 25%;
-    height: 15px;
+.frame-back img{
+    position: relative;
+    transform: rotateY(180deg);
+}
+.frame-back div{
+    position: relative;
+    transform: rotateY(180deg);
+}
+.frames__img{
+    width: 100%;
+    padding: 70px 60px 10px 60px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.frames__title{
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+}
+/* coundown */
+.countdown-bar{
+    width: 100%;
+    height: 5px;
     max-width: 300px;
     min-width: 250px;
     position: relative;
-    margin: 0 auto 0 auto;
-    background-color: rosybrown;
-    background: linear-gradient(#e4e3b4 0 0) padding-box, url(../img/dark-gradient-background-with-copy-space_53876-99548.avif) border-box;
+    margin: 0px auto 10px auto;
     align-items: center;
     display: inline-flex;
-    border: 2px solid transparent;
+    border: 2px solid black;
     border-radius: 50px;
+    background-color: #000;
 }
-.countdow{
+.countdown{
     position: absolute;
     left: 0px;
     width: 100%;
     height: 100%;
     border-radius: 20px;
     background: rgb(0, 229, 255);
-    transition: 0.5s;
+    transition: 0s;
 }
 .lines{
     width: 100%;
@@ -106,7 +111,52 @@ body {
     position: absolute;
 }
 .line{
-    width: 12px;
+    width: 4px;
     border: 0.4px solid #000;
     rotate: 90deg;;
+}
+/* menugame */
+.menugame{
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: 1s;
+}
+.menugame *{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+}
+#play, #lose, #win{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 10px;
+}
+#play{
+    width: 50vw;
+    height: 10vw;
+    background-image: url(../img/play.png);
+    background-size: cover;
+    display: initial;
+}
+#lose{
+    width: 50vw;
+    height: 10vw;
+    background-image: url(../img/lose.png);
+    background-size: cover;
+    display: none;
+}
+#win{
+    width: 50vw;
+    height: 10vw;
+    background-image: url(../img/win.png);
+    background-size: cover;
+    display: none;
 }

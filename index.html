@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Guess the logo</title>
 </head>
-
-<body id="body">
-    <div class="title">Guess the logo</div>
-    <div class="logo-container" id="logo-container">
-        <div id="logo" class="logo">
-            <div class="font">
-                <img id="logo__img" onerror="placehoder.png" alt="text" class="logo-img" src="assets/img/placehoder.png">
-                <div class="info">
-                    <h3 id="logo__name" class="name">________</h3>
+<body>
+    <div class="container" popver>
+        <h1 class="title">Guess the logo</h1>
+        <div id="countdown-bar" class="countdown-bar">
+            <div id="countdown" class="countdown"></div>
+            <div class="lines">
+                <div class="line"></div>        <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="frames">
+                <div class="frame-font">
+                    <img class="frames__img" id="frame-font__img" src="assets/img/placehoder.png" alt="logo">
+                    <label class="frames__title" id="frame-font__title">_____</label>
+                </div>
+                <div class="frame-back">
+                    <img class="frames__img" id="frame-back__img" src="assets/img/placehoder.png" alt="logo">
+                    <div>
+                        <label class="frames__title" id="frame-back__title">_____</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="countdow-bar" class="countdow-bar">
-        <div id="countdow" class="countdow"></div>
-        <div class="lines">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
+    <div class="menugame">
+        <div id="play" onclick="play_()"></div>
+        <div id="lose"></div>
+        <div id="win"></div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"
-        integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="main.js"></script> -->
-    <script type="module" src="/assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/loaderIMG.js"></script>
 </body>
-
 </html>
