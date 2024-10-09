@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Guess the logo</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <div class="bg bg1"></div>
+    <div class="bg bg2"></div>
     <div class="container" popver>
         <h1 class="title">Guess the logo</h1>
         <div id="countdown-bar" class="countdown-bar">
@@ -36,13 +38,25 @@
                 </div>
             </div>
         </div>
+        <div class="progress">
+            <div class="progress__length">
+                <img src="assets/img/lightning2.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="btn1">Chơi lại</div>
+        <div class="btn2">Tiếp tục</div>
     </div>
     <div class="menugame">
-        <div id="play" onclick="play_()"></div>
-        <div id="lose"></div>
-        <div id="win"></div>
+        <div id="play"></div>
+        <div id="lose">
+            <div class="play_again play_again1" onClick="window.location.reload();"></div>
+        </div>
+        <div id="win">
+            <div class="play_again play_again2" onClick="window.location.reload();"></div>
+        </div>
     </div>
-    <script src="assets/js/main.js"></script>
     <script type="module" src="assets/js/loaderIMG.js"></script>
 </body>
 </html>

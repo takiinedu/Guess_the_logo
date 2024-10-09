@@ -1,206 +1,232 @@
-console.log("connect index.js to index.html success");
+let img_arr = [
+    "9 Min Language",
+    "Adobe Creative Cloud",
+    "Adobe Premier Pro",
+    "Amazon",
+    "Android Studio",
+    "AutoCAD",
+    "BUSUU",
+    "Bing",
+    "ChatGPT",
+    "Cisco",
+    "Clipcharm",
+    "Cloudflare",
+    "Codewars",
+    "Colorhunt",
+    "DaVinci Resolve",
+    "Datadog",
+    "DesignEvo",
+    "Discord",
+    "Dropbox",
+    "Encode",
+    "Excel",
+    "Filmora",
+    "Forest App",
+    "Gemini",
+    "Github",
+    "Inshot",
+    "Jetbrains AQUA",
+    "Jetbrains CLion",
+    "Jetbrains Dataspell",
+    "Jetbrains DotCover",
+    "Jetbrains Webstorm",
+    "Looka",
+    "Mcafee",
+    "Mendeley",
+    "Meta",
+    "Mimo",
+    "Miro",
+    "Notion",
+    "NoxOcean",
+    "Opera",
+    "Otter",
+    "Pinterest",
+    "Powerpoint",
+    "Reddit",
+    "Siri",
+    "Slack",
+    "Sololearn",
+    "StackOverflow",
+    "Teams",
+    "Telegram",
+    "TickTick",
+    "Trello",
+    "Tumblr",
+    "VScode",
+    "Visual Studio",
+    "Wolfram",
+    "Word",
+    "Xmind",
+    "Zalo",
+    "Zotero"
+];
 
-// Import các hàm cần thiết từ SDK Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-storage.js";
+let url__ = "";
+let name__ = "";
 
-// Cấu hình Firebase của ứng dụng web
-const firebaseConfig = {
-    apiKey: "AIzaSyDjds91lHLZ0x2KI71oHc0rZgbxhE2JBn4",
-    authDomain: "logo-b3804.firebaseapp.com",
-    projectId: "logo-b3804",
-    storageBucket: "logo-b3804.appspot.com",
-    messagingSenderId: "640346822474",
-    appId: "1:640346822474:web:d5f14b57bb18afd55613b3",
-    measurementId: "G-HNKT0PE0QQ"
-};
-
-// Khởi tạo Firebase
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
-const imagesRef = ref(storage, 'images/');
-
-const img_truoc = document.getElementById("frame-font__img");
-const img_sau = document.getElementById("frame-back__img");
-const name_truoc = document.getElementById("frame-font__title");
-const name_sau = document.getElementById("frame-back__title");
-
-let number_of_logos = 60;
-let index_array = [0];
-for (let i = 0; i < number_of_logos; i++) {
-    index_array[i] = i;
-}
-console.log(index_array)
-// comme on web 
-let url = "";
-let name = "";
-listAll(imagesRef)
-    .then((res) => {
-        const promises = res.items.map((itemRef) => {
-            return getDownloadURL(itemRef).then((url) => {
-                const name_img = itemRef.name;
-                const nameWithoutExtension = name_img.replace(/\.[^/.]+$/, "");
-                return { name: nameWithoutExtension, url: url };
-            });
-        });
-
-        return Promise.all(promises);
-    })
-    .then((items) => {
-        // Sắp xếp các mục theo tên
-        items.sort((a, b) => a.name.localeCompare(b.name));
-
-        // Lấy một chỉ số ngẫu nhiên khác với chỉ số trước đó
-        let random = Math.floor(Math.random() * index_array.length) - 1;
-        let index = index_array[random];
-        index_array.splice(random, 1);
-        console.log("index =", index);
-        console.log(index_array);
-        if (index < items.length) {
-            const item = items[index];
-            url = item.url;
-            name = item.name;
-            console.log("url =", url);
-            console.log("name =", name);
-            img_truoc.src = url;
-        }
-    })
-    .catch((error) => {
-        console.error("Error listing images:", error);
-    });
 const countdown = document.getElementById("countdown");
 const play_btn = document.getElementById("play");
+const img_truoc = document.getElementById("frame-font__img");
+const img_sau = document.getElementById("frame-back__img");
+const name__truoc = document.getElementById("frame-font__title");
+const name__sau = document.getElementById("frame-back__title");
+
+function random() {
+    let random = Math.floor(Math.random() * img_arr.length);
+    url__ = `assets/img/logo/${img_arr[random]}.png`;
+    name__ = img_arr[random];
+    img_arr.splice(random, 1);
+}
+random();
+img_truoc.src = url__;
 let can_click_play = false;
-setTimeout(function () {
+
+setTimeout(() => {
     can_click_play = true;
+    play_btn.style.cursor = "pointer";
 }, 2000);
-// 
+
+// guessed
+let guessed = 0;
+function guessed_() {
+    if (guessed < 3) {
+        guessed++;
+    }
+    document.querySelector('.progress__length').style.width = `${guessed * 100 / 3}%`;
+}
 let time = 10;
-function countdown_() {
-    if (time == 0) {
+
+const countdown_ = () => {
+    if (time === -1) return;
+    if (time === 0 && guessed < 3) {
         document.getElementById("lose").style.display = "initial";
-        document.getElementById("play").style.display = "none";
+        play_btn.style.display = "none";
         document.querySelector('.menugame').style.top = '0';
+        document.querySelector('.menugame').style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
         return;
     }
-    time --;
-    setTimeout(function () {
-        countdown_();
-    }, 1000);
-}
+    if (guessed == 3) {
+        can_click_play = false;
+        document.getElementById("win").style.display = "initial";
+        play_btn.style.display = "none";
+        document.querySelector('.menugame').style.top = '0';
+        document.querySelector('.menugame').style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        return;
+    }
+    time;
+    setTimeout(countdown_, 1000);
+};
 
 play_btn.addEventListener("click", () => {
     if (can_click_play) {
-        // play_out
-        console.log("play");
+        can_click_play = false;
         time = 11;
         countdown_();
-        const menugame = document.querySelector('.menugame');
-        menugame.style.top = '-100vh';
+        document.querySelector('.menugame').style.top = '-100vh';
         setTimeout(() => {
-            const container = document.querySelector('.container');
-            container.style.top = '50%';
+            document.querySelector('.container').style.top = '50%';
         }, 100);
-        // 
-        img_sau.src = url;
-        name_sau.innerHTML = name;
-        setTimeout(function () {
+        img_sau.src = url__;
+        name__sau.innerHTML = name__;
+        setTimeout(() => {
             countdown.style.transition = 'all 10s linear';
-            countdown.style.backgroundColor = 'rgb(255, 0, 0)'
+            countdown.style.backgroundColor = 'rgb(255, 0, 0)';
             countdown.style.width = '0';
         }, 1300);
+        setTimeout(() => {
+            img_truoc.src = url__;
+            can_click_play = true;
+        }, 3300);
     }
 });
+
+
+const btn1 = document.querySelector(".btn1");
+const btn2 = document.querySelector(".btn2");
+let btn_can_click = false;
+btn1.addEventListener("click", () => {
+    if(btn_can_click){
+        btn_can_click = false;
+        can_click_play = true;
+        card.click();
+    }
+});
+btn2.addEventListener("click", () => {
+    if(btn_can_click){
+        btn_can_click = false;
+        can_click_play = true;
+        card.click();
+        guessed_();
+    }
+});
+
 let rotateY = 0;
 let mat = 1;
-function card_clicked() {
-    document.querySelector('.frames').style.transform = 'rotateY(' + rotateY + 'deg)';
-}
 const card = document.querySelector('.card');
-card.addEventListener("click", () => {
+card.addEventListener("click", async () => {
+    if (img_arr.length === 0) {
+        time = -1;
+        can_click_play = false;
+    };
     if (can_click_play) {
         can_click_play = false;
-        // 
-        if (rotateY == 0) {
-            rotateY = 180;
-        } else {
-            rotateY = 0;
+        rotateY = rotateY === 0 ? 180 : 360;
+        document.querySelector('.frames').style.transform = `rotateY(${rotateY}deg)`;
+        if (rotateY === 360) {
+            setTimeout(() => {
+                rotateY = 0;
+                document.querySelector('.frames').style.transition = '0s';
+                document.querySelector('.frames').style.transform = `rotateY(${rotateY}deg)`;
+            }, 2500);
+            setTimeout(() => {
+                document.querySelector('.frames').style.transition = '1s';
+            }, 2550);
         }
-        document.querySelector('.frames').style.transform = 'rotateY(' + rotateY + 'deg)';
-        // 
-        if (mat == 1) {
+        if (mat === 1) {
+            // integral_()
+            time = -1;
             mat = 2;
+            random();
+            document.querySelector(".buttons").style.transition = "0.5s"
+            document.querySelector(".buttons").style.opacity = "1"
             countdown.style.transition = 'all 0s linear';
-            setTimeout(() => {
-                countdown.style.width = '100%';
-            }, 100);
-            setTimeout(() => {
-                countdown.style.backgroundColor = 'rgb(225, 255, 0)'
-            }, 200);
+            setTimeout(() => countdown.style.width = '100%', 100);
+            setTimeout(() => countdown.style.backgroundColor = 'rgb(225, 255, 0)', 200);
             setTimeout(() => {
                 countdown.style.transition = 'all 2s linear';
                 countdown.style.width = '0';
             }, 300);
             setTimeout(() => {
                 countdown.style.transition = 'all 0s linear';
-                countdown.style.backgroundColor = 'rgb(0, 229, 255)'
+                countdown.style.backgroundColor = 'rgb(0, 229, 255)';
             }, 3000);
-            // 
-            listAll(imagesRef)
-                .then((res) => {
-                    const promises = res.items.map((itemRef) => {
-                        return getDownloadURL(itemRef).then((url) => {
-                            const name_img = itemRef.name;
-                            const nameWithoutExtension = name_img.replace(/\.[^/.]+$/, "");
-                            return { name: nameWithoutExtension, url: url };
-                        });
-                    });
-
-                    return Promise.all(promises);
-                })
-                .then((items) => {
-                    // Sắp xếp các mục theo tên
-                    items.sort((a, b) => a.name.localeCompare(b.name));
-
-                    // Lấy một chỉ số ngẫu nhiên khác với chỉ số trước đó
-                    let random = Math.floor(Math.random() * index_array.length) - 1;
-                    let index = index_array[random];
-                    index_array.splice(random, 1);
-                    console.log("index =", index);
-                    console.log(index_array);
-                    if (index < items.length) {
-                        const item = items[index];
-                        url = item.url;
-                        name = item.name;
-                        countdown.style.backgroundColor = 'rgb(225, 255, 0)'
-                        setTimeout(function () {
-                            img_truoc.src = url;
-                            can_click_play = true;
-                        }, 2000);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error listing images:", error);
-                });
-        }else{
-            can_click_play = false;
+            setTimeout(() => {
+                img_truoc.src = url__;
+                btn_can_click = true;
+            }, 2000);
+        } else {
+            time = 11;
+            document.querySelector(".buttons").style.transition = "0.5s"
+            document.querySelector(".buttons").style.opacity = "0"
+            countdown_();
             countdown.style.transition = 'all 0s linear';
             setTimeout(() => {
                 countdown.style.width = '100%';
-                countdown.style.backgroundColor = 'rgb(0, 229, 255)'
+                countdown.style.backgroundColor = 'rgb(0, 229, 255)';
             }, 100);
             setTimeout(() => {
                 countdown.style.transition = 'all 10s linear';
-                countdown.style.backgroundColor = 'rgb(255, 0, 0)'
+                countdown.style.backgroundColor = 'rgb(255, 0, 0)';
                 countdown.style.width = '0';
             }, 200);
-            mat = 1;
-            img_sau.src = url;
-            name_sau.innerHTML = name;
-            setTimeout(function () {
+            setTimeout(() => {
+                mat = 1;
+                img_sau.src = url__;
+                name__sau.innerHTML = name__;
+            }, 1000);
+            setTimeout(() => {
                 can_click_play = true;
-            }, 2000);
+            }, 3000);
         }
     }
 });
-let check = 0
